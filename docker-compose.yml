@@ -17,5 +17,17 @@ services:
     ports:
       - "8080:8080"
 
+  backend:
+    build: ./backend
+    container_name: workway-backend
+    ports:
+      - "5001:5000"
+    depends_on:
+      - mysql
+    volumes:
+      - ./backend:/app
+    env_file: 
+     - .env
+
 volumes:
   mysql_data:
