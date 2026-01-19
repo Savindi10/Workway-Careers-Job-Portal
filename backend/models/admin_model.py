@@ -52,3 +52,45 @@ def get_all_jobs():
             conn.commit()
     finally:
         conn.close()
+
+# Update job function
+def update_job(
+    job_id,
+    title,
+    description,
+    location,
+    company_name,
+    job_type,
+    closing_date,
+    admin_id
+):
+    conn = get_db_connection()
+    try:
+        with conn.cursor() as cursor:
+            sql = """
+            UPDATE jobs
+            SET title=%s,
+                description=%s,
+                location=%s,
+                company_name=%s,
+                job_type=%s,
+                closing_date=%s
+            WHERE job_id=%s AND admin_id=%s
+            """
+
+            cursor.execute(sql, (
+                title,
+                description,
+                location,
+                company_name,
+                job_type,
+                closing_date,
+                job_id,
+                admin_id
+            ))
+
+            conn.commit()
+            return cursor.rowcount   # how many rows updated
+
+    finally:
+        conn.close()

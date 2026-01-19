@@ -1,4 +1,5 @@
-from models.admin_model import get_admin_by_email, create_job, get_all_jobs
+from models.admin_model import get_admin_by_email, create_job, get_all_jobs , update_job
+from flask import request
 
 def login_admin(email,password):
     admin = get_admin_by_email(email)
@@ -47,3 +48,23 @@ def get_all_jobs_service():
     return {
         "jobs": jobs
     },200
+
+# Update the job service 
+def update_job_service(job_id, admin_id):
+    data = request.get_json()
+
+    updated_rows = update_job(
+        job_id = job_id,
+        title = data["title"],
+        description = data["description"],
+        location = data["location"],
+        company_name = data["company_name"],
+        job_type = data["job_type"],
+        closing_date = data["closing_date"],
+        admin_id = admin_id
+    )
+    if updated_rows == 0:
+        return {"error": "Job not found or no changes made"}, 404
+    
+    return {"message": "Job updated successfully"}, 200
+
