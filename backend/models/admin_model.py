@@ -94,3 +94,20 @@ def update_job(
 
     finally:
         conn.close()
+
+# DELETE job function
+def delete_job(job_id):
+    connection = get_db_connection()
+    try:
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT * FROM jobs WHERE job_id = %s", (job_id,))
+            job = cursor.fetchone()
+
+            if not job:
+                return False
+
+            cursor.execute("DELETE FROM jobs WHERE job_id = %s", (job_id,))
+            connection.commit()
+            return True
+    finally:
+        connection.close()

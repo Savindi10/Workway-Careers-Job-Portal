@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from services.admin_service import login_admin, create_job_service, get_all_jobs_service , update_job_service
+from services.admin_service import login_admin, create_job_service, get_all_jobs_service , update_job_service , delete_job_service
 
 admin_routes = Blueprint("admin", __name__, url_prefix="/admin")
 
@@ -28,4 +28,10 @@ def get_jobs():
 def update_job(job_id):
     admin_id = 1 # temp 
     response, status = update_job_service(job_id, admin_id)
+    return jsonify(response), status
+
+# DELETE JOB ROUTE
+@admin_routes.route("/jobs/<int:job_id>", methods=["DELETE"])
+def delete_job(job_id):
+    response, status = delete_job_service(job_id)
     return jsonify(response), status

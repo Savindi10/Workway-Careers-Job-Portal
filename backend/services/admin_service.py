@@ -1,5 +1,6 @@
-from models.admin_model import get_admin_by_email, create_job, get_all_jobs , update_job
+from models.admin_model import get_admin_by_email, create_job, get_all_jobs , update_job , delete_job
 from flask import request
+
 
 def login_admin(email,password):
     admin = get_admin_by_email(email)
@@ -67,4 +68,15 @@ def update_job_service(job_id, admin_id):
         return {"error": "Job not found or no changes made"}, 404
     
     return {"message": "Job updated successfully"}, 200
+
+    # DELETE job service
+def delete_job_service(job_id):
+    is_deleted = delete_job(job_id)
+
+    if not is_deleted:
+        return {"error": "Job not found"}, 404
+    
+    return {"message": "Job deleted successfully"}, 200
+
+ 
 
