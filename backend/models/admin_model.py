@@ -40,3 +40,15 @@ def create_job(
 
     finally: 
         conn.close()        
+
+# Get all the job function 
+def get_all_jobs():
+    conn = get_db_connection()
+    try:
+        with conn.cursor() as cursor:
+            sql = "SELECT * FROM jobs"
+            cursor.execute(sql)
+            return cursor.fetchall()
+            conn.commit()
+    finally:
+        conn.close()

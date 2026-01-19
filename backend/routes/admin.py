@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from services.admin_service import login_admin, create_job_service
+from services.admin_service import login_admin, create_job_service, get_all_jobs_service
 
 admin_routes = Blueprint("admin", __name__, url_prefix="/admin")
 
@@ -9,10 +9,17 @@ def admin_login():
     response, status = login_admin(data["email"], data["password"])
     return jsonify(response), status 
 
-
+# CREATE JOB ROUTE
 @admin_routes.route("/jobs", methods=["POST"])
 def add_job():
     data = request.json
     response, status = create_job_service(data)
     return jsonify(response), status
 
+
+# READ JOBS ROUTE 
+@admin_routes.route("/jobs", methods=["GET"])
+def get_jobs():
+    response, status = get_all_jobs_service()
+    return jsonify(response), status
+   

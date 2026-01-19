@@ -1,4 +1,4 @@
-from models.admin_model import get_admin_by_email, create_job
+from models.admin_model import get_admin_by_email, create_job, get_all_jobs
 
 def login_admin(email,password):
     admin = get_admin_by_email(email)
@@ -40,3 +40,10 @@ def create_job_service(data):
         admin_id)
     
     return {"message" : "Job created successfully"}, 201
+
+# create for get jobs service 
+def get_all_jobs_service():
+    jobs = get_all_jobs()
+    return {
+        "jobs": jobs
+    },200
