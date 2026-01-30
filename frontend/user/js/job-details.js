@@ -56,10 +56,21 @@ function renderJobDetails(job) {
     <p><strong>Type:</strong> ${type}</p>
     <p><strong>Description:</strong> ${description}</p>
     <p><strong>Closing Date:</strong> ${closingDate}</p>
-    <button class="btn apply-btn" onclick="applyJob(${id})">Apply</button>
+    <button class="btn apply-btn" data-job-id="${id}">Apply</button>
   `;
 
   detailsContainer.appendChild(card);
+  
+  const applyBtn = card.querySelector(".apply-btn");
+  applyBtn.addEventListener("click", () => {
+    window.location.href = `/user/apply.html?job_id=${id}`;
+});
+}
+
+
+
+function applyJob(id) {
+  window.location.href = `/user/apply.html?job_id=${id}`;
 }
 
 // load job details on page load

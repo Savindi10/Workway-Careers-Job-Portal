@@ -70,17 +70,7 @@ function viewDetails(id) {
 }
 
 function applyJob(id) {
-  fetch(`${API_BASE}/user/jobs/${id}/apply`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      user_id: 1, // later from login/session
-      resume_url: "Resume text or URL here"
-    })
-  })
-    .then(res => res.json())
-    .then(data => alert("Application submitted successfully!"))
-    .catch(err => alert("Error submitting application."));
+  window.location.href = `/user/apply.html?job_id=${id}`;
 }
 
 // ✅ Instead of renderJobs(sampleJobs), do this:

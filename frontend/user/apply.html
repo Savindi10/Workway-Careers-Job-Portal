@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Apply for Job</title>
+  <link rel="stylesheet" href="/src/main.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">WorkWay Careers</div>
+  </nav>
+
+  <section class="form-section" id="apply-section">
+    <div class="form-card">
+
+      <h2 class="form-title">Apply for this Job</h2>
+      <p class="form-subtitle">
+        Submit your resume link and take the next step in your career 🚀
+      </p>
+
+      <form id="applicationForm">
+        <input type="hidden" id="job_id">
+
+        <div class="form-group">
+          <label for="resume_url">Resume URL</label>
+          <input
+            type="text"
+            id="resume_url"
+            required
+            placeholder="Paste Google Drive / PDF link"
+          >
+        </div>
+
+        <button type="submit" class="btn apply-submit-btn">
+          Submit Application
+        </button>
+      </form>
+
+      <p id="message" class="form-message"></p>
+
+    </div>
+  </section>
+
+  <script src="/user/js/apply.js"></script>
+</body>
+</html>
