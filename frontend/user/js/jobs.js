@@ -19,7 +19,7 @@ function renderJobs(jobList) {
     card.classList.add("job-card");
 
     // adapt field names depending on your backend JSON keys
-    const id = job.id;
+    const id = job.job_id;
     const title = job.title;
     const location = job.location;
     const type = job.job_type || job.type; // supports either name
@@ -28,7 +28,7 @@ function renderJobs(jobList) {
       <h3>${title}</h3>
       <p><strong>Location:</strong> ${location}</p>
       <p><strong>Type:</strong> ${type}</p>
-      <button class="btn details-btn" onclick="viewDetails(${id})">More Details</button>
+      <button class="btn details-btn " onclick="viewDetails(${id})">More Details</button>
       <button class="btn apply-btn" onclick="applyJob(${id})">Apply</button>
     `;
 
@@ -66,7 +66,7 @@ searchBtn.addEventListener("click", () => {
 });
 
 function viewDetails(id) {
-  window.location.href = `job.html?id=${id}`;
+ window.location.href = `/user/job.html?id=${id}`;  // actual path to job details page
 }
 
 function applyJob(id) {
@@ -85,3 +85,4 @@ function applyJob(id) {
 
 // ✅ Instead of renderJobs(sampleJobs), do this:
 loadJobsFromBackend();
+
