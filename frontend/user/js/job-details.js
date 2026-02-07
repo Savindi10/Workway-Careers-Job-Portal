@@ -1,4 +1,4 @@
-const API_BASE = "http://localhost:5001";
+const API_BASE = "http://localhost:5001/api";
 
 // get job ID from URL (job.html?id=3)
 const params = new URLSearchParams(window.location.search);
@@ -13,7 +13,7 @@ async function loadJobDetails(jobId) {
   }
 
   try {
-    const res = await fetch(`${API_BASE}/user/jobs/${jobId}`);
+    const res = await fetch(`${API_BASE}/jobs/${jobId}`);
     if (!res.ok) throw new Error("Failed to load job details");
 
     const data = await res.json();

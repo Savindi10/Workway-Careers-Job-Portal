@@ -1,4 +1,4 @@
-const API_BASE = "http://localhost:5001"; // later change to your docker hostname or domain
+const API_BASE = "http://localhost:5001/api"; // last add api
 
 const jobsContainer = document.getElementById("jobsContainer");
 const searchInput = document.getElementById("jobSearch");
@@ -38,7 +38,7 @@ function renderJobs(jobList) {
 
 async function loadJobsFromBackend() {
   try {
-    const res = await fetch(`${API_BASE}/user/jobs`);
+    const res = await fetch(`${API_BASE}/jobs`);
     if (!res.ok) throw new Error("Failed to load jobs");
 
     const data = await res.json();

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - WorkWay</title>
+  <link rel="stylesheet" href="/src/main.css">
+</head>
+<body>
+  <!-- Navigation bar will go here -->
+  <div id="nav-placeholder"></div>
+
+  <section class="form-section">
+    <div class="login-card">
+      <h2>Login</h2>
+      <form id="loginForm">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter your Email" required />
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required/>
+
+        <button type="submit">Login</button>
+      </form>
+      <p>Don't have an account? <a href="register.html">Register</a></p>
+      <p id="loginError" class="error-msg"></p>
+    </div>
+  </section>
+  
+  <script src="/src/shared/navbar.js"></script>
+  <script src="/user/js/login.js"></script>
+</body>
+</html>

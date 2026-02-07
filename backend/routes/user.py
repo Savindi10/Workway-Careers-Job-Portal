@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify
 from services.user_service import login_user, view_jobs_service , view_job_details_service, apply_job_service
 
-user_routes = Blueprint("user", __name__, url_prefix="/user")
+user_routes = Blueprint("user", __name__, url_prefix="/api")
 
 # user login
 @user_routes.route("/login", methods=["POST"])

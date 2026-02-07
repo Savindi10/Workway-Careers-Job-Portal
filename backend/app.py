@@ -4,8 +4,13 @@ from routes.user import user_routes
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app, resources={r"/user/*": {"origins": "*"}})
+# CORS(app, resources={r"/user/*": {"origins": "*"}})
+'''CORS(app, resources={
+    r"/user/*": {"origins": "*"},
+    r"/admin/*": {"origins": "*"}
+})'''
 
+CORS(app, origins="http://localhost:3000")
 app.register_blueprint(admin_routes)
 app.register_blueprint(user_routes)
 

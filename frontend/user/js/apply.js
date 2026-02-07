@@ -1,4 +1,4 @@
-const API_BASE = "http://localhost:5001";
+const API_BASE = "http://localhost:5001/api";
 
 // get job_id from URL
 const params = new URLSearchParams(window.location.search);
@@ -13,7 +13,7 @@ document.getElementById("applicationForm").addEventListener("submit", async (e) 
   const message = document.getElementById("message");
 
   try {
-    const res = await fetch(`${API_BASE}/user/jobs/${jobId}/apply`, {
+    const res = await fetch(`${API_BASE}/jobs/${jobId}/apply`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -21,6 +21,12 @@ document.getElementById("applicationForm").addEventListener("submit", async (e) 
         resume_url: resumeUrl
       })
     });
+
+    if (res.status === 409) {
+      message.style.color = "orange";
+      message.innerText = "You have already applied for this job.";
+      return;
+    }
 
     if (!res.ok) throw new Error("Apply failed");
 
