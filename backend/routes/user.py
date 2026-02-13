@@ -1,7 +1,23 @@
 from flask import Blueprint, request, jsonify
-from services.user_service import login_user, view_jobs_service , view_job_details_service, apply_job_service
+from services.user_service import login_user, register_user, view_jobs_service , view_job_details_service, apply_job_service
 
 user_routes = Blueprint("user", __name__, url_prefix="/api")
+
+# user registration
+@user_routes.route("/register", methods=["POST"])
+def user_register():
+    data = request.json
+
+    name = data.get("name")
+    email = data.get("email")
+    password = data.get("password")
+
+    if not name or not email or not password:
+        return jsonify({"error" : "All fields are required"}), 400
+    
+    response, status = register_user(name, email, password)
+    return jsonify(response), status
+
 
 # user login
 @user_routes.route("/login", methods=["POST"])

@@ -1,17 +1,42 @@
+import pymysql
 from db import get_db_connection
+from werkzeug.security import generate_password_hash
+
+# User Registration
+def create_user(name, email,password):
+    conn = get_db_connection()
+    cursor = conn.cursor(pymysql.cursors.DictCursor)
+
+    hashed_password = generate_password_hash(password)
+
+    query = """
+        INSERT INTO users (name, email,password,role)
+        VALUES (%s, %s, %s,'user')
+    """
+    cursor.execute(query, (name,email, hashed_password))
+    conn.commit()
+
+    user_id = cursor.lastrowid
+    cursor.close()
+    conn.close()
+    return user_id
+
 
 # user login 
 from db import get_db_connection
 
 def get_user_by_email(email):
     conn = get_db_connection()
-    try:
-        with conn.cursor() as cursor:
-            sql = "SELECT * FROM users WHERE email=%s AND role='user'"
-            cursor.execute(sql, (email,))
-            return cursor.fetchone()
-    finally:
-        conn.close()
+    cursor = conn.cursor(pymysql.cursors.DictCursor)
+
+    sql = "SELECT * FROM users WHERE email=%s AND role='user'"
+    cursor.execute(sql, (email,))
+    user = cursor.fetchone()
+
+    cursor.close()
+    conn.close()
+    return user
+
 
 # view all the jobs 
 def get_all_jobs():

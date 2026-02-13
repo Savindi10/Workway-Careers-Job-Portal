@@ -1,7 +1,32 @@
 from flask import request
-from models.user_model import get_user_by_email, get_all_jobs, get_job_by_id , insert_application
+from models.user_model import get_user_by_email, create_user, get_all_jobs, get_job_by_id , insert_application
 from pymysql.err import IntegrityError
+from werkzeug.security import check_password_hash
 
+# Used for safe login (supports old plain passwords + new hashed)
+def verify_password(db_password, input_password):
+    if db_password.startswith("pbkdf2:") or db_password.startswith("scrypt:"):
+        return check_password_hash(db_password, input_password)
+
+    return db_password == input_password
+
+
+# User Registration
+def register_user(name, email, password):
+    existing_user = get_user_by_email(email)
+
+    if existing_user:
+        return {"error": "Email already exists"}, 400
+
+    user_id = create_user(name, email, password)
+
+    return {
+        "message": "User registered successfully",
+        "user_id": user_id,
+        "name": name
+    }, 201
+
+    
 # user login 
 def login_user(email, password):
     user = get_user_by_email(email)
@@ -9,8 +34,9 @@ def login_user(email, password):
     if not user:
         return {"error": "User not found"}, 404
     
-    if user["password"] != password:
+    if not verify_password(user["password"], password):
         return {"error": "Invalid password"}, 401
+
     
     return {
         "message": "Login successful",

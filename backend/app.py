@@ -10,7 +10,8 @@ app = Flask(__name__)
     r"/admin/*": {"origins": "*"}
 })'''
 
-CORS(app, origins="http://localhost:3000")
+# CORS(app, origins="http://localhost:3000") 
+CORS(app, resources={r"/*": {"origins": "*"}})
 app.register_blueprint(admin_routes)
 app.register_blueprint(user_routes)
 
