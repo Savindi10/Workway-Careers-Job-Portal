@@ -513,3 +513,220 @@ body {
 .error-msg:not(:empty) {
   display: block;
 }
+
+/* ============================ */
+/* REGISTER PAGE STYLING (SAFE) */
+/* ============================ */
+
+/* Card */
+.register-card {
+  width: 100%;
+  max-width: 420px;
+  padding: 40px 35px;
+
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  animation: registerFloatIn 0.6s ease-out;
+}
+
+/* Smooth entry animation (separate name so it won't conflict) */
+@keyframes registerFloatIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Title */
+.register-card h2 {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 25px;
+  letter-spacing: 0.5px;
+}
+
+/* Form layout */
+#registerForm {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Form group spacing */
+#registerForm .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Labels */
+#registerForm label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #e0e7ff;
+  margin-top: 6px;
+}
+
+/* Inputs */
+#registerForm input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 12px;
+
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+
+  font-size: 14px;
+}
+
+/* Input placeholder */
+#registerForm input::placeholder {
+  color: #cbd5f5;
+}
+
+/* Focus glow */
+#registerForm input:focus {
+  outline: none;
+  border-color: #818cf8;
+  box-shadow: 0 0 0 4px rgba(129, 140, 248, 0.3);
+}
+
+/* Register Button */
+#registerForm button {
+  margin-top: 10px;
+  width: 100%;
+  padding: 16px;
+
+  border: none;
+  border-radius: 14px;
+
+  background: linear-gradient(135deg, #6366f1, #ec4899);
+  color: #ffffff;
+
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#registerForm button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(236, 72, 153, 0.5);
+}
+
+/* Login link text */
+.register-card p {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 14px;
+  color: #cbd5f5;
+}
+
+.register-card p a {
+  color: #a5b4fc;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.register-card p a:hover {
+  text-decoration: underline;
+}
+
+/* Error message */
+.register-error-msg {
+  margin-top: 14px;
+  padding: 12px;
+  border-radius: 12px;
+
+  background: rgba(239, 68, 68, 0.10);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  color: #fecaca;
+
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+
+  /* Hide when empty */
+  display: none;
+}
+
+/* Show error only when it has text */
+.register-error-msg:not(:empty) {
+  display: block;
+}
+
+.register-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+
+  /* Same background style as your form-section */
+  background: radial-gradient(
+      circle at top left,
+      rgba(99, 102, 241, 0.35),
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      rgba(236, 72, 153, 0.35),
+      transparent 40%
+    ),
+    linear-gradient(135deg, #0f172a, #020617);
+
+  /* Force readable text inside register page */
+  color: #ffffff;
+}
+
+
+/* ============================= */
+/* NAVBAR IMPROVEMENTS (SAFE) */
+/* ============================= */
+
+.logo-link {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.nav-user {
+  color: white;
+  font-weight: bold;
+  padding: 8px 10px;
+}
+
+/* ============================= */
+/* ABOUT PAGE*/
+/* ============================= */
+
+.page-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+}
+
+.page-container h1 {
+  margin-bottom: 15px;
+}
+
+.page-container h3 {
+  margin-top: 20px;
+}
